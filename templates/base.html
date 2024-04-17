@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Title</title>
+    <style>
+        /* Navbar styles */
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            margin: 0 10px; /* Add margin between items */
+            transition: background-color 0.3s; /* Smooth transition */
+            border-radius: 5px; /* Rounded corners */
+        }
+
+        .navbar a:hover {
+            background-color: #555; /* Darken color on hover */
+        }
+
+        /* Active/current tab */
+        .navbar a.active {
+            background-color: #666;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <a href="{% url 'index' %}" class="{% if request.path == '/' %}active{% endif %}">Home</a>
+    <a href="{% url 'projectList' %}" class="{% if '/project_list/' in request.path %}active{% endif %}">Project List</a>
+    <a href="{% url 'projectDetails' project_id=1 %}" class="{% if '/project-details/' in request.path %}active{% endif %}">Project Details</a>
+    <a href="{% url 'aboutUs' %}" class="{% if request.path == '/about_us/' %}active{% endif %}">About Us</a>
+</div>
+
+
+{% block content %} 
+{% endblock %}
+</body>
+</html>
